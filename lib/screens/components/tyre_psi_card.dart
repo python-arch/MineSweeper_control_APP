@@ -65,7 +65,7 @@ class TyrePsiCard extends StatelessWidget {
               .copyWith(color: Colors.white, fontWeight: FontWeight.w600),
         ),
         Text(
-          "Pressure".toUpperCase(),
+          "Speed".toUpperCase(),
           style: TextStyle(fontSize: 20),
         ),
       ],
@@ -82,7 +82,7 @@ class TyrePsiCard extends StatelessWidget {
             ),
         children: [
           TextSpan(
-            text: "psi",
+            text: "rpm",
             style: TextStyle(fontSize: 24),
           )
         ],

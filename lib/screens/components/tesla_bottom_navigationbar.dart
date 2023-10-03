@@ -19,7 +19,7 @@ class TeslaBottomNavigationBar extends StatelessWidget {
       onTap: onTap,
       currentIndex: selectedTab,
       type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.black54,
       items: List.generate(
         navIconSrc.length,
         (index) => BottomNavigationBarItem(
@@ -37,6 +37,5 @@ class TeslaBottomNavigationBar extends StatelessWidget {
 List<String> navIconSrc = [
   "assets/icons/Lock.svg",
   "assets/icons/Charge.svg",
-  "assets/icons/Temp.svg",
   "assets/icons/Tyre.svg",
 ];

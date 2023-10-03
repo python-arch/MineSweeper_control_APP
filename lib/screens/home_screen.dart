@@ -4,9 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:minesweepers_control_app/constanins.dart';
 import 'package:minesweepers_control_app/home_controller.dart';
 import 'package:minesweepers_control_app/models/TyrePsi.dart';
+import 'dart:math';
 
 import 'components/battery_status.dart';
-import 'components/door_lock.dart';
+import 'components/arrow_button.dart';
 import 'components/temp_details.dart';
 import 'components/tesla_bottom_navigationbar.dart';
 import 'components/tmp_btn.dart';
@@ -135,21 +136,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           return Scaffold(
             bottomNavigationBar: TeslaBottomNavigationBar(
               onTap: (index) {
-                if (index == 1)
+                if (index == 1) {
                   _batteryAnimationController.forward();
-                else if (_controller.selectedBottomTab == 1 && index != 1)
+                } else if (_controller.selectedBottomTab == 1 && index != 1) {
                   _batteryAnimationController.reverse(from: 0.7);
+                }
 
-                if (index == 2)
-                  _tempAnimationController.forward();
-                else if (_controller.selectedBottomTab == 2 && index != 2)
-                  _tempAnimationController.reverse(from: 0.4);
-
-                if (index == 3)
+                if (index == 2) { // Skip the "Temp" section
                   _tyreAnimationController.forward();
-                else if (_controller.selectedBottomTab == 3 && index != 3)
+                } else if (_controller.selectedBottomTab == 2 && index != 2) {
                   _tyreAnimationController.reverse();
-
+                }
                 _controller.showTyreController(index);
                 _controller.tyreStatusController(index);
                 // Make sure you call it before [onBottomNavigationTabChange]
@@ -157,6 +154,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               },
               selectedTab: _controller.selectedBottomTab,
             ),
+
             body: SafeArea(
               child: LayoutBuilder(
                 builder: (context, constrains) {
@@ -177,9 +175,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         child: Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: constrains.maxHeight * 0.1),
-                          child: SvgPicture.asset(
-                            "assets/icons/Car.svg",
-                            width: double.infinity,
+                          child: Transform.rotate(
+                            angle: -pi/2, // Rotate by 45 degrees (in radians)
+                            child: SvgPicture.asset(
+                              'assets/icons/Car.svg', // Replace with your SVG file path
+                            ),
                           ),
                         ),
                       ),
@@ -192,9 +192,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         child: AnimatedOpacity(
                           duration: defaultDuration,
                           opacity: _controller.selectedBottomTab == 0 ? 1 : 0,
-                          child: DoorLock(
-                            isLock: _controller.isRightDoorLock,
-                            press: _controller.updateRightDoorLock,
+                          child: Container(
+                            width: 100, // Set the desired width
+                            height: 100,
+                            child : ArrowButton(
+                              command: 1, // Replace with the appropriate command integer for right arrow
+                              press: _controller.updateRightArrow, // Replace with your command handling function
+                            ),
                           ),
                         ),
                       ),
@@ -206,9 +210,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         child: AnimatedOpacity(
                           duration: defaultDuration,
                           opacity: _controller.selectedBottomTab == 0 ? 1 : 0,
-                          child: DoorLock(
-                            isLock: _controller.isLeftDoorLock,
-                            press: _controller.updateLeftDoorLock,
+                          child: Container(
+                            width: 100, // Set the desired width
+                            height: 100,
+                            child : ArrowButton(
+                              command: 2, // Replace with the appropriate command integer for right arrow
+                              press: _controller.updateLeftArrow, // Replace with your command handling function
+                            ),
                           ),
                         ),
                       ),
@@ -220,10 +228,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         child: AnimatedOpacity(
                           duration: defaultDuration,
                           opacity: _controller.selectedBottomTab == 0 ? 1 : 0,
-                          child: DoorLock(
-                            isLock: _controller.isBonnetLock,
-                            press: _controller.updateBonnetDoorLock,
-                          ),
+                          child: MouseRegion(cursor: SystemMouseCursors.click,
+                              child: Container(
+                              width: 100, // Set the desired width
+                              height: 100,
+                              child : ArrowButton(
+                              command: 4, // Replace with the appropriate command integer for right arrow
+                              press: _controller.updateForwardArrow, // Replace with your command handling function
+                              ),
+                  ),
+                  ),
                         ),
                       ),
                       AnimatedPositioned(
@@ -234,9 +248,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         child: AnimatedOpacity(
                           duration: defaultDuration,
                           opacity: _controller.selectedBottomTab == 0 ? 1 : 0,
-                          child: DoorLock(
-                            isLock: _controller.isTrunkLock,
-                            press: _controller.updateTrunkDoorLock,
+                          child: Container(
+                            width: 100, // Set the desired width
+                            height: 100,
+                            child : ArrowButton(
+                            command: 3, // Replace with the appropriate command integer for right arrow
+                            press: _controller.updateBackwardArrow, // Replace with your command handling function
+                          ),
                           ),
                         ),
                       ),

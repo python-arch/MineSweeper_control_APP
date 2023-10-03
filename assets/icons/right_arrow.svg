@@ -1,0 +1,15 @@
+<svg width="1050px" height="1050px" viewBox="0 0 53 53" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Left door lock</title>
+    <g id="App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Car-Lock" transform="translate(-32.000000, -398.000000)" fill="#FF5368">
+            <g id="Lockers" transform="translate(21.000000, 207.000000)">
+                <g id="Left-door-lock" transform="translate(0.000000, 180.000000)">
+                    <!-- Smaller Circle with a fill -->
+                    <circle id="Circle" fill="#FF5368" cx="37.5" cy="37.5" r="50"></circle>
+                    <!-- Smaller Arrow pointing backward -->
+                    <path d="M47.5,37.5 L39.75,44.5 L39.75,40.5 L29,40.5 L29,33.5 L39.75,33.5 L39.75,29.5 L47.5,37.5 Z" id="Arrow" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
